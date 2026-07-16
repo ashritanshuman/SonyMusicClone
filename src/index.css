@@ -1,0 +1,165 @@
+/* src/index.css */
+@import './styles/variables.css';
+
+/* CSS Reset & General */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333338;
+  border-radius: 5px;
+  border: 2px solid var(--color-bg-darker);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-red);
+}
+
+/* Helper Layout Classes */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+.section-padding {
+  padding: 5rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 3rem 0;
+  }
+}
+
+.text-center { text-align: center; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.align-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.grid { display: grid; }
+
+/* Micro-animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes pulseRed {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(227, 27, 35, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(227, 27, 35, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(227, 27, 35, 0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-normal) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--transition-normal) forwards;
+}
+
+.pulse-animation {
+  animation: pulseRed 2s infinite;
+}
+
+/* Floating Audio Waves for Player */
+.audio-wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+
+.audio-wave span {
+  width: 3px;
+  background-color: var(--color-brand-red);
+  border-radius: 3px;
+  animation: bounceWave 1s ease infinite alternate;
+}
+
+.audio-wave.paused span {
+  animation-play-state: paused !important;
+  height: 3px !important;
+}
+
+.audio-wave span:nth-child(1) { height: 15px; animation-delay: 0.1s; }
+.audio-wave span:nth-child(2) { height: 8px; animation-delay: 0.3s; }
+.audio-wave span:nth-child(3) { height: 18px; animation-delay: 0.5s; }
+.audio-wave span:nth-child(4) { height: 12px; animation-delay: 0.2s; }
+.audio-wave span:nth-child(5) { height: 5px; animation-delay: 0.4s; }
+
+@keyframes bounceWave {
+  from { height: 3px; }
+  to { height: 20px; }
+}
+
+/* Hide Default App.css rules */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-light);
+}

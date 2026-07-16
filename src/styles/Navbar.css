@@ -1,0 +1,249 @@
+/* src/styles/Navbar.css */
+
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal);
+}
+
+/* Sony Corporate Top Bar */
+.sony-corporate-bar {
+  background-color: #000000;
+  height: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 2rem;
+  border-bottom: 1px solid #111;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+.sony-corporate-bar a {
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.sony-corporate-bar a:hover {
+  opacity: 1;
+}
+
+/* Main Navbar */
+.main-navbar {
+  height: 64px;
+  background-color: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  color: var(--color-text-white);
+  position: relative;
+}
+
+/* Logo Layout */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.logo-icon-svg {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-text {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-family: var(--font-primary);
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-text span {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  opacity: 0.7;
+}
+
+/* Nav Menu (Desktop) */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  height: 100%;
+}
+
+.nav-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.85;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+
+.nav-item:hover .nav-link,
+.nav-link.active {
+  opacity: 1;
+  color: var(--color-brand-red);
+}
+
+/* Dropdown styling */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: var(--color-bg-dark);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  width: 240px;
+  padding: 0.75rem 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+  z-index: 1100;
+}
+
+.nav-item:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all var(--transition-fast);
+}
+
+.dropdown-item a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-brand-red);
+  padding-left: 1.75rem;
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  color: var(--color-text-white);
+  font-size: 1.5rem;
+}
+
+/* Mobile Drawer Overlay */
+.mobile-drawer {
+  position: fixed;
+  top: 88px; /* corporate (24px) + main (64px) */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 88px);
+  background-color: var(--color-bg-darker);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform var(--transition-normal);
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid var(--color-border-dark);
+  padding-bottom: 1rem;
+}
+
+.mobile-nav-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: var(--color-text-white);
+}
+
+.mobile-nav-title.active {
+  color: var(--color-brand-red);
+}
+
+.mobile-dropdown {
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-dropdown-link {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+  padding: 0.25rem 0;
+}
+
+.mobile-dropdown-link:hover {
+  color: var(--color-brand-red);
+}
+
+/* Responsive Navbar Rules */
+@media (max-width: 900px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: block;
+  }
+  
+  .main-navbar {
+    padding: 0 1.5rem;
+  }
+  
+  .sony-corporate-bar {
+    padding: 0 1.5rem;
+  }
+}
